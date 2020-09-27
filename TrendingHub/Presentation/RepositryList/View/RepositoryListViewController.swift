@@ -19,9 +19,9 @@ class RepositoryListViewController: UIViewController {
     }
     
     static func viewController(with viewModel: RepositoryListViewModel) -> RepositoryListViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let viewController = storyboard.instantiateInitialViewController() as? Self else {
-            fatalError("Failure while instantiating viewContrller \(Self.self)")
+        let storyboard = UIStoryboard(name: String(describing: Self.self), bundle: nil)
+        guard let viewController = storyboard.instantiateInitialViewController() as? RepositoryListViewController else {
+            fatalError("Failure while instantiating viewController \(Self.self)")
         }
         viewController.viewModel = viewModel
         return viewController

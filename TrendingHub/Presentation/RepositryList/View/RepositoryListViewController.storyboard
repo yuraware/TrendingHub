@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xKH-mH-SqL">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Repository List View Controller-->
+        <scene sceneID="Q11-Nw-KpV">
+            <objects>
+                <viewController id="xKH-mH-SqL" customClass="RepositoryListViewController" customModule="TrendingHub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eeT-9S-hBZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Ics-2k-ip1">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="qfP-3Y-r5N"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n9R-ir-mXc">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="lVA-0s-3PR" customClass="RepositoryTableViewCell" customModule="TrendingHub" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="92"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lVA-0s-3PR" id="TZC-wS-vNN">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="92"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nGe-DH-c7i">
+                                                    <rect key="frame" x="20" y="10" width="374" height="62"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezg-Lr-Cif">
+                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20.5" id="UVe-WL-FTU"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Project start count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfu-l1-iSX">
+                                                            <rect key="frame" x="0.0" y="20.5" width="374" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uO7-Ig-8ye">
+                                                            <rect key="frame" x="0.0" y="41" width="374" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Vfu-l1-iSX" firstAttribute="leading" secondItem="nGe-DH-c7i" secondAttribute="leading" id="3eO-Hl-b9M"/>
+                                                        <constraint firstItem="Ezg-Lr-Cif" firstAttribute="top" secondItem="nGe-DH-c7i" secondAttribute="top" id="583-HA-LKn"/>
+                                                        <constraint firstItem="Vfu-l1-iSX" firstAttribute="top" secondItem="Ezg-Lr-Cif" secondAttribute="bottom" id="KVe-r4-s30"/>
+                                                        <constraint firstAttribute="trailing" secondItem="uO7-Ig-8ye" secondAttribute="trailing" id="Nhr-LK-7gs"/>
+                                                        <constraint firstItem="uO7-Ig-8ye" firstAttribute="top" secondItem="Vfu-l1-iSX" secondAttribute="bottom" id="R5V-NN-jGO"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Vfu-l1-iSX" secondAttribute="trailing" id="UMw-01-Tpn"/>
+                                                        <constraint firstItem="Ezg-Lr-Cif" firstAttribute="leading" secondItem="nGe-DH-c7i" secondAttribute="leading" id="afT-zF-7d7"/>
+                                                        <constraint firstAttribute="bottom" secondItem="uO7-Ig-8ye" secondAttribute="bottom" id="gwq-kI-iE2"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Ezg-Lr-Cif" secondAttribute="trailing" id="lOB-QU-GrU"/>
+                                                        <constraint firstItem="uO7-Ig-8ye" firstAttribute="leading" secondItem="nGe-DH-c7i" secondAttribute="leading" id="phf-eD-Ccv"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="nGe-DH-c7i" secondAttribute="bottom" constant="20" id="4hi-Ro-jhf"/>
+                                                <constraint firstItem="nGe-DH-c7i" firstAttribute="leading" secondItem="TZC-wS-vNN" secondAttribute="leading" constant="20" id="VqF-CN-e63"/>
+                                                <constraint firstItem="nGe-DH-c7i" firstAttribute="top" secondItem="TZC-wS-vNN" secondAttribute="top" constant="10" id="tkp-Xb-ljn"/>
+                                                <constraint firstAttribute="trailing" secondItem="nGe-DH-c7i" secondAttribute="trailing" constant="20" id="vVs-f2-vAb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="projectDescriptionLabel" destination="uO7-Ig-8ye" id="3o2-co-JEt"/>
+                                            <outlet property="projectNameLabel" destination="Ezg-Lr-Cif" id="uvV-8g-O45"/>
+                                            <outlet property="starCountLabel" destination="Vfu-l1-iSX" id="V5f-uJ-NVI"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="n9R-ir-mXc" firstAttribute="top" secondItem="Ics-2k-ip1" secondAttribute="bottom" id="3z2-6T-wZS"/>
+                            <constraint firstItem="Ics-2k-ip1" firstAttribute="leading" secondItem="cZa-gm-W96" secondAttribute="leading" id="FoI-GI-JUk"/>
+                            <constraint firstItem="Ics-2k-ip1" firstAttribute="top" secondItem="cZa-gm-W96" secondAttribute="top" id="OWA-8c-Xmi"/>
+                            <constraint firstItem="n9R-ir-mXc" firstAttribute="leading" secondItem="cZa-gm-W96" secondAttribute="leading" id="fhz-KT-QXk"/>
+                            <constraint firstAttribute="bottom" secondItem="n9R-ir-mXc" secondAttribute="bottom" id="gOS-o2-seL"/>
+                            <constraint firstItem="Ics-2k-ip1" firstAttribute="trailing" secondItem="cZa-gm-W96" secondAttribute="trailing" id="kc1-e8-JnX"/>
+                            <constraint firstItem="n9R-ir-mXc" firstAttribute="trailing" secondItem="cZa-gm-W96" secondAttribute="trailing" id="swc-km-B6o"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cZa-gm-W96"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Z3H-JT-4dC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OGJ-l9-q9N" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="100.44642857142857"/>
+        </scene>
+    </scenes>
+</document>
