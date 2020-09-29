@@ -6,6 +6,32 @@
 //  Copyright © 2020 Helloworld Association. All rights reserved.
 //
 
-class RepositoryListViewModel {
+protocol RepositoryListViewModelInput {
+    func viewWillAppear()
+    func didSelect(item: RepositoryViewModel)
+}
+
+protocol RepositoryListViewModel : RepositoryListViewModelInput {
+    var title: String { get }
+}
+
+final class RepositoryListViewModelImpl : RepositoryListViewModel {
+    
     let title = "Github Trends"
+    
+    private let fetchUseCase : FetchRepositoriesUseCase
+    
+    init(fetchUseCase : FetchRepositoriesUseCase) {
+        self.fetchUseCase = fetchUseCase
+    }
+}
+
+extension RepositoryListViewModelImpl {
+    func viewWillAppear() {
+        
+    }
+    
+    func didSelect(item: RepositoryViewModel) {
+        
+    }
 }
