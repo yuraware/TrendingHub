@@ -7,14 +7,28 @@
 //
 
 import UIKit
+import RxSwift
 
 class RepositoryListViewController: UIViewController {
 
     private var viewModel: RepositoryListViewModel!
+    @IBOutlet weak var tableView: UITableView!
+    
+    let disposeBag = DisposeBag()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.title
+        
+        viewModel.items.observeOn(MainScheduler.instance).subscribe { [weak self] _ in
+            self?.tableView.reloadData()
+        }.disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.viewWillAppear()
     }
     
     static func viewController(with viewModel: RepositoryListViewModel) -> RepositoryListViewController {

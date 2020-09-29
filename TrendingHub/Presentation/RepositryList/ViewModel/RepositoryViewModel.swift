@@ -10,12 +10,12 @@ import UIKit
 
 struct RepositoryViewModel {
     let projectName: String
-    let starsCount: Int
-    let description: String
+    let starsCount: String
+    let projectDescription: String
     
     init(repository: Repository) {
         projectName = repository.name
-        starsCount = repository.stars
-        description = repository.description
+        starsCount = "\(repository.stars)"
+        projectDescription = repository.description
     }
 }

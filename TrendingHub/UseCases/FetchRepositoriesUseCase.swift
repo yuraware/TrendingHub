@@ -9,7 +9,8 @@
 import UIKit
 
 protocol FetchRepositoriesUseCase {
-    func fetch(completion: @escaping (Result<[RepositoryViewModel], APIError>) -> Void) -> CancellableTask
+    func
+        fetch(completion: @escaping (Result<[Repository], APIError>) -> Void) -> CancellableTask
 }
 
 class APIFetchRepositoriesUseCase : FetchRepositoriesUseCase {
@@ -20,7 +21,7 @@ class APIFetchRepositoriesUseCase : FetchRepositoriesUseCase {
         self.apiRepository = apiRepository
     }
     
-    func fetch(completion: @escaping (Result<[RepositoryViewModel], APIError>) -> Void) -> CancellableTask {
+    func fetch(completion: @escaping (Result<[Repository], APIError>) -> Void) -> CancellableTask {
         return apiRepository.fetchRepositories(completion: completion)
     }
 }

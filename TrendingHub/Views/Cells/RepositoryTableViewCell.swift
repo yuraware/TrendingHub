@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RepositoryTableViewCell: UITableViewCell {
+final class RepositoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var projectNameLabel: UILabel!
     @IBOutlet weak var starCountLabel: UILabel!
@@ -21,5 +21,23 @@ class RepositoryTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
+    func fill(repositoryViewModel: RepositoryViewModel) {
+        projectNameLabel.text = repositoryViewModel.projectName
+        starCountLabel.text = repositoryViewModel.starsCount
+        projectDescriptionLabel.text = repositoryViewModel.projectDescription
+    }
 }
+/*
+ final class MoviesQueriesItemCell: UITableViewCell {
+     static let height = CGFloat(50)
+     static let reuseIdentifier = String(describing: MoviesQueriesItemCell.self)
+
+     @IBOutlet private var titleLabel: UILabel!
+     
+     func fill(with suggestion: MoviesQueryListItemViewModel) {
+         self.titleLabel.text = suggestion.query
+     }
+ }
+
+ */

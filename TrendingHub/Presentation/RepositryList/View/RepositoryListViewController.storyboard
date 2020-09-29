@@ -86,6 +86,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="xKH-mH-SqL" id="SXa-Gy-kGa"/>
+                                    <outlet property="delegate" destination="xKH-mH-SqL" id="bBI-53-znD"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -101,6 +105,9 @@
                         <viewLayoutGuide key="safeArea" id="cZa-gm-W96"/>
                     </view>
                     <navigationItem key="navigationItem" id="Z3H-JT-4dC"/>
+                    <connections>
+                        <outlet property="tableView" destination="n9R-ir-mXc" id="lQk-Xw-cvx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGJ-l9-q9N" sceneMemberID="firstResponder"/>
             </objects>

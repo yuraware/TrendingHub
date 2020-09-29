@@ -21,14 +21,14 @@ enum APIError: Error {
 extension URLSessionTask: CancellableTask { }
 
 protocol APIRepository {
-    func fetchRepositories(completion: @escaping (Result<[RepositoryViewModel], APIError>) -> Void) -> CancellableTask
+    func fetchRepositories(completion: @escaping (Result<[Repository], APIError>) -> Void) -> CancellableTask
 }
 
 class APIDataRepository: APIRepository {
     
     let fetchTrendingEndpoint = "https://ghapi.huchen.dev/repositories"
     
-    func fetchRepositories(completion: @escaping (Result<[RepositoryViewModel], APIError>) -> Void) -> CancellableTask {
+    func fetchRepositories(completion: @escaping (Result<[Repository], APIError>) -> Void) -> CancellableTask {
 
         guard let url = URL(string: fetchTrendingEndpoint) else {
             fatalError("Can't construct URL")
@@ -39,9 +39,8 @@ class APIDataRepository: APIRepository {
                 return
             }
             
-            if let repositoriesList = try? JSONDecoder().decode(RepositoryList.self, from: data) {
-                let viewModels = repositoriesList.list.map { RepositoryViewModel(repository: $0) }
-                completion(.success(viewModels))
+            if let repositoriesList = try? JSONDecoder().decode(Array<Repository>.self, from: data) {
+                completion(.success(repositoriesList))
             } else {
                 completion(.failure(.invalidJSON))
             }

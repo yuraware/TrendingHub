@@ -14,6 +14,3 @@ struct Repository : Codable {
     let description: String
 }
 
-struct RepositoryList : Codable {
-    let list : [Repository]
-}
