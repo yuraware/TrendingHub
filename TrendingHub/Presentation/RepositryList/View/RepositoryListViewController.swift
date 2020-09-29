@@ -14,7 +14,6 @@ class RepositoryListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = viewModel.title
     }
     

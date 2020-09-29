@@ -7,15 +7,24 @@
 //
 
 class AppDIContainer {
-    
     func createReposityListViewModel() -> RepositoryListViewModel {
-        return RepositoryListViewModel()
+        return RepositoryListViewModelImpl(fetchUseCase: createFetchRepositoriesUseCase())
+    }
+    
+    func createFetchRepositoriesUseCase() -> FetchRepositoriesUseCase {
+        return APIFetchRepositoriesUseCase(apiRepository: createAPIRepository())
+    }
+    
+    func createAPIRepository() -> APIRepository {
+        return APIDataRepository()
     }
 }
 
 extension AppDIContainer: RepositoryListDependencies {
     
     func createRepositoryListViewController() -> RepositoryListViewController {
-           return RepositoryListViewController.viewController(with: createReposityListViewModel())
+        return RepositoryListViewController.viewController(with: createReposityListViewModel())
     }
+    
+    
 }
