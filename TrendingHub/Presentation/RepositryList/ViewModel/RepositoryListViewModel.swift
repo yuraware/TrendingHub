@@ -16,12 +16,14 @@ protocol RepositoryListViewModelInput {
 
 protocol RepositoryListViewModel : RepositoryListViewModelInput {
     var title: String { get }
-    var items: BehaviorRelay<[RepositoryViewModel]> { get }
+    var itemsRelay: BehaviorRelay<[RepositoryViewModel]> { get }
 }
 
 final class RepositoryListViewModelImpl : RepositoryListViewModel {
     
-    let items = BehaviorRelay<[RepositoryViewModel]>(value: [])
+    let itemsRelay = BehaviorRelay<[RepositoryViewModel]>(value: [])
+    
+    private var cachedItems: [RepositoryViewModel]?
     
     let title = "Github Trends"
     
@@ -39,7 +41,7 @@ extension RepositoryListViewModelImpl {
             guard let self = self else { return }
             switch result {
             case .success(let repositories):   
-                self.items.accept(repositories.map { RepositoryViewModel(repository: $0) })
+                self.itemsRelay.accept(repositories.map { RepositoryViewModel(repository: $0) })
             case .failure: break
             }
         }

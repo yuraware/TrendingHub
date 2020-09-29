@@ -9,10 +9,13 @@
 import UIKit
 
 final class RepositoryTableViewCell: UITableViewCell {
+    
+    static let reuseIdentifier = String(describing: RepositoryTableViewCell.self)
 
     @IBOutlet weak var projectNameLabel: UILabel!
     @IBOutlet weak var starCountLabel: UILabel!
     @IBOutlet weak var projectDescriptionLabel: UILabel!
+    @IBOutlet weak var stackView: UIStackView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,16 +31,4 @@ final class RepositoryTableViewCell: UITableViewCell {
         projectDescriptionLabel.text = repositoryViewModel.projectDescription
     }
 }
-/*
- final class MoviesQueriesItemCell: UITableViewCell {
-     static let height = CGFloat(50)
-     static let reuseIdentifier = String(describing: MoviesQueriesItemCell.self)
 
-     @IBOutlet private var titleLabel: UILabel!
-     
-     func fill(with suggestion: MoviesQueryListItemViewModel) {
-         self.titleLabel.text = suggestion.query
-     }
- }
-
- */

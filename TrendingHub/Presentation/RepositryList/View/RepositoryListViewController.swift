@@ -8,24 +8,64 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class RepositoryListViewController: UIViewController {
 
     private var viewModel: RepositoryListViewModel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     let disposeBag = DisposeBag()
-
+    
+    // `dataSource` captures items to rendred
+    // It prevents frequent changing of items emitted by viewModel
+    // due to async nature of update it can corrupt the data consistency in tableview
+    var dataSource = [RepositoryViewModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.title
-        
-        viewModel.items.observeOn(MainScheduler.instance).subscribe { [weak self] _ in
-            self?.tableView.reloadData()
-        }.disposed(by: disposeBag)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        bindUI()
+    }
+    
+    private func bindUI() {
+        viewModel.itemsRelay.observeOn(MainScheduler.instance).subscribe {
+            [weak self] items in
+            guard let self = self else { return }
+            self.dataSource = items.element ?? [RepositoryViewModel]()
+            
+            self.tableView.reloadData()
+        }.disposed(by: disposeBag)
+        
+        searchBar.rx.text
+            .throttle(1, scheduler: MainScheduler.instance)
+            .observeOn(MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe { event in
+                
+        }
+        
+    }
+    
+    /*
+     let results = searchBar.rx.text.orEmpty
+     .throttle(0.5, scheduler: MainScheduler.instance)
+     .distinctUntilChanged()
+     .flatMapLatest { query -> Observable<NflPlayerStats> in
+       if query.isEmpty {
+         return .just([])
+       }
+       return ApiController.shared.search(search: query)
+         .catchErrorJustReturn([])
+     }
+     .observeOn(MainScheduler.instance)
+     */
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.viewWillAppear()
@@ -40,3 +80,31 @@ class RepositoryListViewController: UIViewController {
         return viewController
     }
 }
+
+extension RepositoryListViewController : UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryTableViewCell.reuseIdentifier, for: indexPath) as? RepositoryTableViewCell else {
+            fatalError()
+        }
+        
+        cell.fill(repositoryViewModel: dataSource[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelect(item: dataSource[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+}
+
