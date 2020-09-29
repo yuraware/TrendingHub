@@ -8,9 +8,12 @@
 
 import Foundation
 
-struct Repository {
+struct Repository : Codable {
     let stars: Int
     let name: String
     let description: String
-    
+}
+
+struct RepositoryList : Codable {
+    let list : [Repository]
 }
