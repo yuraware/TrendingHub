@@ -41,7 +41,8 @@ final class RepositoryListViewModelImpl : RepositoryListViewModel {
 extension RepositoryListViewModelImpl {
     func viewWillAppear() {
         
-        _ = fetchUseCase.fetch { [weak self] (result) in
+        //TODO: add canceling of fetch before a new refresh
+        fetchUseCase.fetch { [weak self] (result) in
             guard let self = self else { return }
             
             switch result {

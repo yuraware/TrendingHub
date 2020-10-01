@@ -13,4 +13,3 @@ struct User : Codable {
     let href: URL
     let avatar: String
 }
-

@@ -96,14 +96,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DA3A94482520F7B300E098D5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				DA3A94492520F7BD00E098D5 /* Cells */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		DA3A94492520F7BD00E098D5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,25 +107,25 @@
 		DA3A944C2521008200E098D5 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				DA3A944D2521008F00E098D5 /* RepositryList */,
+				DAB4438725265DE100AFBAC1 /* RepositoryDetails */,
+				DA3A944D2521008F00E098D5 /* RepositoryList */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		DA3A944D2521008F00E098D5 /* RepositryList */ = {
+		DA3A944D2521008F00E098D5 /* RepositoryList */ = {
 			isa = PBXGroup;
 			children = (
 				DA3A944F252100D000E098D5 /* View */,
 				DA3A944E252100C700E098D5 /* ViewModel */,
 			);
-			path = RepositryList;
+			path = RepositoryList;
 			sourceTree = "<group>";
 		};
 		DA3A944E252100C700E098D5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				DA3A94502521014E00E098D5 /* RepositoryListViewModel.swift */,
-				DA3A94622521B42E00E098D5 /* RepositoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -141,18 +133,19 @@
 		DA3A944F252100D000E098D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DA5522B52524BAD50056A3A8 /* Details */,
-				DA5522B42524BAC80056A3A8 /* List */,
+				DA3A94492520F7BD00E098D5 /* Cells */,
+				DA3A940B251F294200E098D5 /* RepositoryListViewController.swift */,
+				DA3A945B252114F000E098D5 /* RepositoryListViewController.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		DA3A9453252102B600E098D5 /* DependencyInjection */ = {
+		DA3A9453252102B600E098D5 /* DI */ = {
 			isa = PBXGroup;
 			children = (
 				DA3A94542521031800E098D5 /* AppDIContainer.swift */,
 			);
-			path = DependencyInjection;
+			path = DI;
 			sourceTree = "<group>";
 		};
 		DA3A945625210A3700E098D5 /* Coordinator */ = {
@@ -171,30 +164,38 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
-		DA5522B42524BAC80056A3A8 /* List */ = {
-			isa = PBXGroup;
-			children = (
-				DA3A940B251F294200E098D5 /* RepositoryListViewController.swift */,
-				DA3A945B252114F000E098D5 /* RepositoryListViewController.storyboard */,
-			);
-			path = List;
-			sourceTree = "<group>";
-		};
-		DA5522B52524BAD50056A3A8 /* Details */ = {
-			isa = PBXGroup;
-			children = (
-				DA3A940D251F296A00E098D5 /* RepositoryDetailsViewController.swift */,
-				DA232A7925260B7800841948 /* RepositoryDetailsViewController.storyboard */,
-			);
-			path = Details;
-			sourceTree = "<group>";
-		};
 		DAA7D1AE25238260005E7379 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
 				DAA7D1AF2523827E005E7379 /* FetchRepositoriesUseCase.swift */,
 			);
 			path = UseCases;
+			sourceTree = "<group>";
+		};
+		DAB4438725265DE100AFBAC1 /* RepositoryDetails */ = {
+			isa = PBXGroup;
+			children = (
+				DAB4438825265DF600AFBAC1 /* View */,
+				DAB4438925265DFA00AFBAC1 /* ViewModel */,
+			);
+			path = RepositoryDetails;
+			sourceTree = "<group>";
+		};
+		DAB4438825265DF600AFBAC1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DA3A940D251F296A00E098D5 /* RepositoryDetailsViewController.swift */,
+				DA232A7925260B7800841948 /* RepositoryDetailsViewController.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DAB4438925265DFA00AFBAC1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DA3A94622521B42E00E098D5 /* RepositoryViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		DAD02EAC2519394600EBF02F = {
@@ -218,13 +219,12 @@
 		DAD02EB72519394600EBF02F /* TrendingHub */ = {
 			isa = PBXGroup;
 			children = (
-				DA3A9453252102B600E098D5 /* DependencyInjection */,
+				DA3A9453252102B600E098D5 /* DI */,
 				DAA7D1AE25238260005E7379 /* UseCases */,
 				DA3A945D2521B29100E098D5 /* Repositories */,
 				DA3A945625210A3700E098D5 /* Coordinator */,
 				DAE65684251F286B0070113A /* Domain */,
 				DA3A944C2521008200E098D5 /* Presentation */,
-				DA3A94482520F7B300E098D5 /* View */,
 				DAD02EB82519394600EBF02F /* AppDelegate.swift */,
 				DAD02EBA2519394600EBF02F /* SceneDelegate.swift */,
 				DAD02EBC2519394600EBF02F /* ViewController.swift */,
