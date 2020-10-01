@@ -13,7 +13,8 @@ protocol FlowCoordinator {
 }
 
 protocol RepositoryListDependencies {
-    func createRepositoryListViewController() -> RepositoryListViewController
+    func createRepositoryListViewController(didSelect: @escaping RepositoryListViewDidSelectAction) -> RepositoryListViewController
+    func createRepositoryDetailsViewController(repository: Repository) -> RepositoryDetailsViewController
 }
 
 // For simplicity used one flow - AppFlowCoordinator. Nested flows is a good practice.
@@ -29,8 +30,13 @@ class AppFlowCoordinator: FlowCoordinator {
     }
     
     func start() {
-        let repositoryListViewController = dependencies.createRepositoryListViewController()
+        let repositoryListViewController = dependencies.createRepositoryListViewController(didSelect: presentDetails(repository:))
         navigationController.setViewControllers([repositoryListViewController], animated: true)
+    }
+    
+    func presentDetails(repository: Repository) {
+        let viewController = dependencies.createRepositoryDetailsViewController(repository: repository)
+        navigationController.pushViewController(viewController, animated: true)
     }
 }
 

@@ -7,8 +7,12 @@
 //
 
 class AppDIContainer {
-    func createReposityListViewModel() -> RepositoryListViewModel {
-        return RepositoryListViewModelImpl(fetchUseCase: createFetchRepositoriesUseCase())
+    func createReposityListViewModel(didSelect: @escaping RepositoryListViewDidSelectAction) -> RepositoryListViewModel {
+        return RepositoryListViewModelImpl(fetchUseCase: createFetchRepositoriesUseCase(), didSelect: didSelect)
+    }
+    
+    func createReposityViewModel(repository: Repository) -> RepositoryViewModel {
+           return RepositoryViewModelImpl(repository: repository)
     }
     
     func createFetchRepositoriesUseCase() -> FetchRepositoriesUseCase {
@@ -21,10 +25,13 @@ class AppDIContainer {
 }
 
 extension AppDIContainer: RepositoryListDependencies {
-    
-    func createRepositoryListViewController() -> RepositoryListViewController {
-        return RepositoryListViewController.viewController(with: createReposityListViewModel())
+
+    func createRepositoryListViewController(didSelect: @escaping RepositoryListViewDidSelectAction) -> RepositoryListViewController {
+        return RepositoryListViewController
+            .viewController(with: createReposityListViewModel(didSelect: didSelect))
     }
     
-    
+    func createRepositoryDetailsViewController(repository: Repository) -> RepositoryDetailsViewController {
+        return RepositoryDetailsViewController.viewController(with: createReposityViewModel(repository: repository))
+    }
 }
