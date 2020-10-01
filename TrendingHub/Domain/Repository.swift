@@ -8,9 +8,19 @@
 
 import Foundation
 
-struct Repository : Codable {
+struct Repository : Codable, Equatable {
     let stars: Int
     let name: String
     let description: String
+    let builtBy : [User]
 }
 
+extension Repository {
+    var author : User? {
+        builtBy.first
+    }
+}
+
+func ==(lhs: Repository, rhs: Repository) -> Bool {
+    return lhs.name == rhs.name
+}

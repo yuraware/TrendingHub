@@ -33,10 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: - Private
     
     private func setupStyles() {
+        let grayColor = UIColor(red: 102.0/255.0, green: 124.0/255.0, blue: 137.0/255.0, alpha: 1.0)
         UINavigationBar.appearance().barTintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor(red: 102.0/255.0, green: 124.0/255.0, blue: 137.0/255.0, alpha: 1.0)]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : grayColor]
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
+         UINavigationBar.appearance().tintColor = grayColor
     }
 
 }
