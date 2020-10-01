@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DA232A7A25260B7900841948 /* RepositoryDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA232A7925260B7800841948 /* RepositoryDetailsViewController.storyboard */; };
+		DA232A7D25263A4600841948 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = DA232A7C25263A4600841948 /* AlamofireImage */; };
 		DA3A940C251F294200E098D5 /* RepositoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3A940B251F294200E098D5 /* RepositoryListViewController.swift */; };
 		DA3A940E251F296A00E098D5 /* RepositoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3A940D251F296A00E098D5 /* RepositoryDetailsViewController.swift */; };
 		DA3A944B2520F82800E098D5 /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3A944A2520F82800E098D5 /* RepositoryTableViewCell.swift */; };
@@ -77,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAE65681251F28610070113A /* RxCocoa in Frameworks */,
+				DA232A7D25263A4600841948 /* AlamofireImage in Frameworks */,
 				DAE6567F251F28610070113A /* RxRelay in Frameworks */,
 				DAE6567B251F28610070113A /* RxSwift in Frameworks */,
 			);
@@ -272,6 +274,7 @@
 				DAE6567A251F28610070113A /* RxSwift */,
 				DAE6567E251F28610070113A /* RxRelay */,
 				DAE65680251F28610070113A /* RxCocoa */,
+				DA232A7C25263A4600841948 /* AlamofireImage */,
 			);
 			productName = TrendingHub;
 			productReference = DAD02EB52519394600EBF02F /* TrendingHub.app */;
@@ -329,6 +332,7 @@
 			mainGroup = DAD02EAC2519394600EBF02F;
 			packageReferences = (
 				DAE65679251F28610070113A /* XCRemoteSwiftPackageReference "RxSwift" */,
+				DA232A7B25263A4600841948 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 			);
 			productRefGroup = DAD02EB62519394600EBF02F /* Products */;
 			projectDirPath = "";
@@ -645,6 +649,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DA232A7B25263A4600841948 /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.0;
+			};
+		};
 		DAE65679251F28610070113A /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -656,6 +668,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DA232A7C25263A4600841948 /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA232A7B25263A4600841948 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
 		DAE6567A251F28610070113A /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DAE65679251F28610070113A /* XCRemoteSwiftPackageReference "RxSwift" */;

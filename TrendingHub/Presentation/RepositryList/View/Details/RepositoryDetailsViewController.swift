@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import AlamofireImage
+import WebKit
+import RxSwift
+import RxRelay
 
 class RepositoryDetailsViewController: UIViewController {
 
@@ -14,12 +18,12 @@ class RepositoryDetailsViewController: UIViewController {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var starsLabel: UILabel!
-    @IBOutlet weak var forksLabel: UILabel!
     @IBOutlet weak var avatar: UIImageView!
     
-    @IBOutlet weak var readmeTextView: UITextView!
-
+    @IBOutlet weak var readmeLabel: UILabel!
+    @IBOutlet weak var readmeWebView: WKWebView!
+    
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +34,25 @@ class RepositoryDetailsViewController: UIViewController {
         title = viewModel.projectName
         nameLabel.text = viewModel.authorName
         descriptionLabel.text = viewModel.projectDescription
+        avatar.layer.cornerRadius = avatar.layer.bounds.size.width/2
+        avatar.layer.masksToBounds = true
+        self.readmeWebView.isHidden = true
+        
+        if let authorAvatarURL = viewModel.authorAvatarURL {
+            avatar.af.setImage(withURL: authorAvatarURL)
+        }
+        
+        viewModel.readmeRelay.observeOn(MainScheduler.instance)
+            .subscribe { [weak self] event in
+                guard let self = self else { return }
+                if let html = event.element as? String {
+                    self.readmeWebView.isHidden = false
+                    self.readmeWebView.loadHTMLString(html, baseURL: nil)
+                } else {
+                    self.readmeLabel.text = "No Readme file"
+                }
+                
+            }.disposed(by: disposeBag)
     }
     
     static func viewController(with viewModel: RepositoryViewModel) -> RepositoryDetailsViewController {

@@ -6,7 +6,9 @@
 //  Copyright © 2020 Helloworld Association. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import RxSwift
+import RxRelay
 
 protocol RepositoryViewModel {
     var projectName: String { get }
@@ -15,15 +17,19 @@ protocol RepositoryViewModel {
     
     var authorName: String? { get }
     var authorAvatarURL: URL? { get }
+    var readmeRelay: BehaviorRelay<String?> { get }
 }
 
-struct RepositoryViewModelImpl : RepositoryViewModel {
+class RepositoryViewModelImpl : RepositoryViewModel {
     
     let projectName: String
     let starsCount: String
     let projectDescription: String
+    
     let authorName: String?
     let authorAvatarURL: URL?
+    
+    let readmeRelay = BehaviorRelay<String?>(value: "")
     
     init(repository: Repository) {
         projectName = repository.name
@@ -34,6 +40,21 @@ struct RepositoryViewModelImpl : RepositoryViewModel {
             authorAvatarURL = url
         } else {
             authorAvatarURL = nil
+        }
+        
+        let url = repository.url.replacingOccurrences(of: "https://github.com/", with: "https://raw.githubusercontent.com/")
+        if let readmeURL = URL(string: url + "/master/README.md") {
+            let task = URLSession.shared.dataTask(with: readmeURL) {
+                (data, response, error) in
+                if let data = data, let readmeString = String(data: data, encoding: .utf8) {
+                    if readmeString.contains("404: Not Found") == false {
+                        self.readmeRelay.accept(readmeString)
+                    } else {
+                        self.readmeRelay.accept(nil)
+                    }
+                }
+            }
+            task.resume()
         }
     }
 }

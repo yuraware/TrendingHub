@@ -44,7 +44,7 @@ class RepositoryListViewController: UIViewController {
         }.disposed(by: disposeBag)
         
         searchBar.rx.text
-            .throttle(1, latest: true, scheduler: MainScheduler.instance)
+            .throttle(.seconds(1), latest: true, scheduler: MainScheduler.instance)
             .observeOn(MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe { [weak self]  event in

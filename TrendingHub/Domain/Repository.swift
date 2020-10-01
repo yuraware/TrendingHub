@@ -12,6 +12,7 @@ struct Repository : Codable, Equatable {
     let stars: Int
     let name: String
     let description: String
+    let url: String
     let builtBy : [User]
 }
 
