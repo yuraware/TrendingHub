@@ -1,13 +1,15 @@
 # TrendingHub iOS app
 
 Architecture: MVVM, Clean architecture
-Used: 
+Libraries used:
 * RxSwift for reactive programming https://github.com/ReactiveX/RxSwift
-* AlamofireImage for a async image download https://github.com/Alamofire/AlamofireImage
+* AlamofireImage for async image download https://github.com/Alamofire/AlamofireImage
 
 Implemented: 
 * FlowCoordinator
+* Networking
+* Data binding
 * Dependency Injection
-* User intereface
+* User interface
 * Unit tests
 
