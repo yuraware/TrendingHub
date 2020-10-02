@@ -104,11 +104,16 @@ class TrendingHubTests: XCTestCase {
         let viewModel = RepositoryListViewModelImpl(fetchUseCase: useCase, didSelect: didSelect(item:))
         viewModel.viewWillAppear()
         _ = try? viewModel.itemsRelay.toBlocking(timeout: 2).last()
-        viewModel.startSearch(searchTerm: "C++")
+        viewModel.startSearch(searchTerm: "c++")
         _ = try? viewModel.itemsRelay.toBlocking(timeout: 2).last()
         let viewModels = viewModel.itemsRelay.value
         XCTAssertNotNil(viewModels)
         XCTAssertEqual(viewModels.count, 1)
+        if let filteredViewModel = viewModels.first {
+            XCTAssertTrue(filteredViewModel.projectName.contains("c++"))
+        } else {
+            XCTFail()
+        }
     }
     
     func didSelect(item: Repository) {}
